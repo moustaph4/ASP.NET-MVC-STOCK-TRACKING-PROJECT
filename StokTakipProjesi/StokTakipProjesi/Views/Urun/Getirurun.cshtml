@@ -1,0 +1,71 @@
+﻿
+@model StokTakipProjesi.Models.Entity.tblUrun
+
+@{
+    ViewBag.Title = "Getirurun";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!-- Form  -->
+<div class="col-5">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Müşteri Güncelle</h6>
+        <div class="mb-3">
+            @using (Html.BeginForm("Guncelleurun", "Urun", FormMethod.Post))
+            {
+                <div>
+                    @Html.LabelFor(m => m.urunId)
+                    <br />
+                    @Html.TextBoxFor(m => m.urunId, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.urunAd)
+                    <br />
+                    @Html.TextBoxFor(m => m.urunAd, new { @class = "form-control" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.urunMarka)
+                    <br />
+                    @Html.TextBoxFor(m => m.urunMarka, new { @class = "form-control" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.urunKategori)
+                    <br />
+                    @Html.DropDownListFor(m => m.tblKategori.kategoriId, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-select mb-3" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.urunFiyat)
+                    <br />
+                    @Html.TextBoxFor(m => m.urunFiyat, new { @class = "form-control" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.urunStok)
+                    <br />
+                    @Html.TextBoxFor(m => m.urunStok, new { @class = "form-control" })
+                </div>
+
+                <br />
+
+                <button type="submit" class="btn btn-warning">GÜNCELLE</button>
+
+            }
+        </div>
+
+    </div>
+</div>
+

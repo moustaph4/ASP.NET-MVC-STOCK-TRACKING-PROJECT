@@ -1,0 +1,37 @@
+﻿
+@model StokTakipProjesi.Models.Entity.tblMusteri
+
+@{
+    ViewBag.Title = "Yenimusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<!-- Form  -->
+<div class="col-5">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Müşteri Ekle</h6>
+        <form method="post">
+            <div class="mb-3">
+
+                <label class="form-label">Müşteri Adı</label>
+
+                @Html.TextBoxFor(m => m.musteriAd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.musteriAd, "", new { @style = "color:red" })
+
+
+            </div>
+            <div class="mb-3">
+
+                <label class="form-label">Müşteri Soyadı</label>
+
+                @Html.TextBoxFor(m => m.musteriSoyad, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.musteriSoyad, "", new { @style = "color:red" })
+
+            </div>
+            <button type="submit" class="btn btn-primary">EKLE</button>
+
+        </form>
+    </div>
+</div>

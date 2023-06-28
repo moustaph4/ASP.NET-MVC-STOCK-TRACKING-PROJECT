@@ -1,0 +1,81 @@
+﻿
+@using StokTakipProjesi.Models.Entity
+
+@*@model List<tblUrun>*@
+
+@model PagedList.IPagedList<tblUrun>
+
+@using PagedList
+
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@* ----- ARAMA ARACI ----- *@
+
+<div class="col-12" style="float:right">
+    <div class="" style="margin-top:10px">
+        <div class="bg-secondary rounded h-100 p-4">
+            @using (Html.BeginForm("Index", "Urun", FormMethod.Get))
+            {
+                <div class="d-flex mb-2">
+                    @Html.TextBox("arama", "", new { @class = "form-control" })
+                    <button type="submit" class="btn btn-primary ms-2">ARA</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@* ----- ARAMA ARACI ----- *@
+
+@* ----- Kategorileri tabloya listeledik ----- *@
+
+<div class="col-12" style="float:left">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Ürün Tablosu</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ÜRÜN ID</th>
+                        <th>ÜRÜN AD</th>
+                        <th>ÜRÜN MARKA</th>
+                        <th>ÜRÜN KATEGORİ</th>
+                        <th>ÜRÜN FİYAT</th>
+                        <th>ÜRÜN STOK</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var urun in Model)
+                    {
+                        <tr>
+                            <td>@urun.urunId</td>
+                            <td>@urun.urunAd</td>
+                            <td>@urun.urunMarka</td>
+                            <td>@urun.tblKategori.kategoriAd</td>
+                            <td>@urun.urunFiyat</td>
+                            <td>@urun.urunStok</td>
+                            <td>
+                                @Html.ActionLink("Sil", "Silurun", new { id = urun.urunId }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden emin misiniz?')" })
+                                <a href="/Urun/Getirurun/@urun.urunId" class="btn btn-warning">GÜNCELLE</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.Classic)
+
+            <a href="/Urun/Yeniurun" class="btn btn-success">YENİ ÜRÜN EKLE</a>
+
+        </div>
+    </div>
+</div>
+
+@* ----- Kategorileri tabloya listeledik ----- *@
+

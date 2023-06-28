@@ -1,0 +1,58 @@
+﻿
+@model StokTakipProjesi.Models.Entity.tblSatis
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<!-- Form  -->
+<div class="col-5">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Satış Paneli</h6>
+        <form method="post" action="/Satis/Yenisatis">
+            <div class="mb-3">
+
+                <label class="form-label">Ürün Id</label>
+                @Html.TextBoxFor(m => m.urunId, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.urunId, "", new { @style = "color:red" })
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Müşteri Id</label>
+                @Html.TextBoxFor(m => m.musteriId, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.musteriId, "", new { @style = "color:red" })
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Adet</label>
+                @Html.TextBoxFor(m => m.adet, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.adet, "", new { @style = "color:red" })
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">Fiyat</label>
+                @Html.TextBoxFor(m => m.fiyat, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.fiyat, "", new { @style = "color:red" })
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">SATIŞ YAP</button>
+
+        </form>
+    </div>
+</div>
+
+
+
+
+

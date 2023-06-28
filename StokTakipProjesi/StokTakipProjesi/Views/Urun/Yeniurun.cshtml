@@ -1,0 +1,41 @@
+﻿
+@model StokTakipProjesi.Models.Entity.tblUrun
+
+
+@{
+    ViewBag.Title = "Yeniurun";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<!-- Form  -->
+<div class="col-5">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Ürün Ekle</h6>
+        <form method="post">
+            <div class="mb-3">
+                <label class="form-label">Ürün Adı</label>
+                <input name="urunAd" type="text" class="form-control" required="" maxlength="50">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ürün Markası</label>
+                <input name="urunMarka" type="text" class="form-control" required="" maxlength="50">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ürün Kategorisi</label>
+                @Html.DropDownListFor(m => m.tblKategori.kategoriId, (List<SelectListItem>)ViewBag.dgr, new { @class = "form-select mb-3" })
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ürün Fiyatı</label>
+                <input name="urunFiyat" type="text" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ürün Stok</label>
+                <input name="urunStok" type="text" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary">ÜRÜN EKLE</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+﻿@*amacımız kategorileri listelemek*@
+
+@using StokTakipProjesi.Models.Entity
+
+@model PagedList.IPagedList<tblKategori>
+
+@using PagedList
+
+@using PagedList.Mvc
+
+@*-----------------------------------------------------*@
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@* ----- ARAMA ARACI ----- *@
+
+<div class="col-12" style="float:right">
+    <div class="" style="margin-top:10px">
+        <div class="bg-secondary rounded h-100 p-4">
+            @using (Html.BeginForm("Index", "Kategori", FormMethod.Get))
+            {
+                <div class="d-flex mb-2">
+                    @Html.TextBox("arama", "", new { @class = "form-control" })
+                    <button type="submit" class="btn btn-primary ms-2">ARA</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@* ----- ARAMA ARACI ----- *@
+
+@* ----- Kategorileri tabloya listeledik ----- *@
+
+<div class="col-12" style="float:left">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Kategori Tablosu</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">KATEGORİ ID</th>
+                        <th scope="col">KATEGORİ AD</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var kategori in Model)
+                    {
+                        <tr>
+                            <td>@kategori.kategoriId</td>
+                            <td>@kategori.kategoriAd</td>
+                            <td>
+                                @Html.ActionLink("Sil", "Silkategori", new { id = kategori.kategoriId }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden emin misiniz?')" })
+                                <a href="/Kategori/Getirkategori/@kategori.kategoriId" class="btn btn-warning">GÜNCELLE</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.Classic)
+
+            <a href="/Kategori/Yenikategori" class="btn btn-success">YENİ KATEGORİ EKLE</a>
+
+        </div>
+    </div>
+</div>
+
+@* ----- Kategorileri tabloya listeledik ----- *@
+
+

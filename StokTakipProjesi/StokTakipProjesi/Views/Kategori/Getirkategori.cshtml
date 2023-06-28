@@ -1,0 +1,41 @@
+﻿@model StokTakipProjesi.Models.Entity.tblKategori
+@{
+    ViewBag.Title = "Getirkategori";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!-- Form  -->
+<div class="col-5">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Kategori Güncelle</h6>
+        <div class="mb-3">
+            @using (Html.BeginForm("Guncellekategori", "Kategori", FormMethod.Post))
+            {
+                <div>
+                    @Html.LabelFor(m => m.kategoriId)
+                    <br />
+                    @Html.TextBoxFor(m => m.kategoriId, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.kategoriAd)
+                    <br />
+                    @Html.TextBoxFor(m => m.kategoriAd, new { @class = "form-control" })
+                </div>
+
+                <br />
+
+                <button type="submit" class="btn btn-warning">GÜNCELLE</button>
+
+            }
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

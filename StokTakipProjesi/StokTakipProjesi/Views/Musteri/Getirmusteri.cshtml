@@ -1,0 +1,49 @@
+﻿
+@model StokTakipProjesi.Models.Entity.tblMusteri
+
+@{
+    ViewBag.Title = "Getirmusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<!-- Form  -->
+<div class="col-5">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Müşteri Güncelle</h6>
+        <div class="mb-3">
+            @using (Html.BeginForm("Guncellemusteri", "Musteri", FormMethod.Post))
+            {
+                <div>
+                    @Html.LabelFor(m => m.musteriId)
+                    <br />
+                    @Html.TextBoxFor(m => m.musteriId, new { @class = "form-control", @readonly = "readonly" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.musteriAd)
+                    <br />
+                    @Html.TextBoxFor(m => m.musteriAd, new { @class = "form-control" })
+                </div>
+
+                <br />
+
+                <div>
+                    @Html.LabelFor(m => m.musteriSoyad)
+                    <br />
+                    @Html.TextBoxFor(m => m.musteriSoyad, new { @class = "form-control" })
+                </div>
+
+                <br />
+
+                <button type="submit" class="btn btn-warning">GÜNCELLE</button>
+
+            }
+        </div>
+
+    </div>
+</div>
+
+

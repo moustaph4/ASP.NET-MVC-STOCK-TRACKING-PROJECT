@@ -1,0 +1,80 @@
+﻿
+@using StokTakipProjesi.Models.Entity
+
+@*@model List<tblMusteri>*@
+
+@model PagedList.IPagedList<tblMusteri>
+
+@using PagedList
+
+@using PagedList.Mvc
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@* ----- ARAMA ARACI ----- *@
+
+<div class="col-12" style="float:right">
+    <div class="" style="margin-top:10px">
+        <div class="bg-secondary rounded h-100 p-4">
+            @using (Html.BeginForm("Index", "Musteri", FormMethod.Get))
+            {
+                <div class="d-flex mb-2">
+                    @Html.TextBox("arama", "", new { @class = "form-control" })
+                    <button type="submit" class="btn btn-primary ms-2">ARA</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@* ----- ARAMA ARACI ----- *@
+
+@* ----- Kategorileri tabloya listeledik ----- *@
+
+<div class="col-12" style="float:left">
+    <div class="bg-secondary rounded h-100 p-4" style="margin-top:10px; ">
+        <h6 class="mb-4">Müşteri Tablosu</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>MÜŞTERİ ID</th>
+                        <th>MÜŞTERİ AD</th>
+                        <th>MÜŞTERİ SOYAD</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var musteri in Model)
+                    {
+
+                        <tr>
+                            <td>@musteri.musteriId</td>
+                            <td>@musteri.musteriAd</td>
+                            <td>@musteri.musteriSoyad</td>
+                            <td>
+                                @Html.ActionLink("Sil", "Silmusteri", new { id = musteri.musteriId }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek istediğinizden emin misiniz?')" })
+                                <a href="/Musteri/Getirmusteri/@musteri.musteriId" class="btn btn-warning">GÜNCELLE</a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+
+            @*Sayfaları geçme aracı*@
+
+            @Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.Classic)
+
+            <a href="/Musteri/Yenimusteri" class="btn btn-success">YENİ MÜŞTERİ EKLE</a>
+
+        </div>
+    </div>
+</div>
+
+@* ----- Kategorileri tabloya listeledik ----- *@
